@@ -1,5 +1,8 @@
-const API_KEY = "94c7155ee1ed44d52b58b763653dbedd"; 
-const BASE_URL = "https://gnews.io/api/v4/search?q=";
+//const API_KEY = "94c7155ee1ed4..................."; 
+
+//const BASE_URL = "https://gnews.io/api/v4/search?q=";
+
+const PROXY_URL = "https://raspy-flower-acb3.hello-ashutosh-world.workers.dev";
 
 window.addEventListener("load", () => fetchNews("India"));
 
@@ -7,10 +10,21 @@ function reload() {
     window.location.reload();
 }
 
+// async function fetchNews(query) {
+//     try {
+//         const res = await fetch(`${BASE_URL}${query}&token=${API_KEY}&lang=en`);
+//         const data = await res.json();
+//         bindData(data.articles);
+//     } catch (error) {
+//         console.error("Error fetching news:", error);
+//     }
+// }
 async function fetchNews(query) {
     try {
-        const res = await fetch(`${BASE_URL}${query}&token=${API_KEY}&lang=en`);
+        const res = await fetch(`${PROXY_URL}?q=${query}`);
         const data = await res.json();
+
+        // GNews API returns `articles`
         bindData(data.articles);
     } catch (error) {
         console.error("Error fetching news:", error);
